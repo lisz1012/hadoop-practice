@@ -16,6 +16,10 @@ public class MyTopN {
 
 		job.setJarByClass(MyTopN.class);
 		job.setJobName("Top N");
+
+		// 在客户端规划的时候，将join的右表cache到mapTask出现的节点上. 数据会被发到每个mapTask的节点特定的目录下. 只能集群运行，不能local
+		job.addCacheFile(new Path("/data/topn/dict/dict.txt").toUri());
+
 		// 作为初学者，关注的是Client端的代码梳理，下面的代码要熟练, 如果把这块写明白了，也就真的知道这个作业的开发原理了
 		// MR的作者屏蔽了很多技术底层的细节，我们只需要关心和业务相关的点就好
 		// input

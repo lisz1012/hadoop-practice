@@ -14,6 +14,7 @@ public class TopNkey implements Serialization<TopNkey>, WritableComparable<TopNk
 	private int month;
 	private int day;
 	private int temperature;
+	private String location;
 
 	public TopNkey() {
 	}
@@ -57,6 +58,14 @@ public class TopNkey implements Serialization<TopNkey>, WritableComparable<TopNk
 		this.temperature = temperature;
 	}
 
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	@Override
 	public int compareTo(TopNkey that) {
 		// 为了让这个案例体现API开发，所以下面的逻辑是一种通用的逻辑：按照时间的正序，
@@ -78,6 +87,7 @@ public class TopNkey implements Serialization<TopNkey>, WritableComparable<TopNk
 		out.writeInt(month);
 		out.writeInt(day);
 		out.writeInt(temperature);
+		out.writeUTF(location);
 	}
 
 	@Override
@@ -86,6 +96,7 @@ public class TopNkey implements Serialization<TopNkey>, WritableComparable<TopNk
 		month = in.readInt();
 		day = in.readInt();
 		temperature = in.readInt();
+		location = in.readUTF();
 	}
 
 	@Override

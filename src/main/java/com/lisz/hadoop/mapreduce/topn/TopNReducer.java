@@ -41,13 +41,13 @@ public class TopNReducer extends Reducer<TopNkey, IntWritable, Text, IntWritable
 		while (iterator.hasNext()){
 			iterator.next();
 			if (!firstWritten) {
-				text.set(key.getYear() + "-" + key.getMonth() + "-" + key.getDay());
+				text.set(key.getYear() + "-" + key.getMonth() + "-" + key.getDay() + "-" + key.getLocation());
 				intWritable.set(key.getTemperature());
 				context.write(text, intWritable);
 				firstWritten = true;
 			}
 			if (key.getDay() != firstDay) {
-				text.set(key.getYear() + "-" + key.getMonth() + "-" + key.getDay());
+				text.set(key.getYear() + "-" + key.getMonth() + "-" + key.getDay() + "-" + key.getLocation());
 				intWritable.set(key.getTemperature());
 				context.write(text, intWritable);
 				break;
