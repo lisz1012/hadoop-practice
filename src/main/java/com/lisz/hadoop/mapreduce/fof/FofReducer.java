@@ -19,7 +19,7 @@ public class FofReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 			if (value > 0) {
 				sum += value;
 			} else {
-				return;
+				return; // key中的两人是直接好友，根据题意，返回
 			}
 		}
 		VALUE.set(sum);
